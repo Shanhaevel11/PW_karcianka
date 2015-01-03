@@ -1,0 +1,9 @@
+c:\users\maciej\documents\visual studio 2013\Projects\PW_Karcianka\PW_Karcianka\bin\Debug\PW_Karcianka.exe.config
+c:\users\maciej\documents\visual studio 2013\Projects\PW_Karcianka\PW_Karcianka\bin\Debug\PW_Karcianka.exe
+c:\users\maciej\documents\visual studio 2013\Projects\PW_Karcianka\PW_Karcianka\bin\Debug\PW_Karcianka.pdb
+c:\users\maciej\documents\visual studio 2013\Projects\PW_Karcianka\PW_Karcianka\obj\Debug\PW_Karcianka.Properties.Resources.resources
+c:\users\maciej\documents\visual studio 2013\Projects\PW_Karcianka\PW_Karcianka\obj\Debug\PW_Karcianka.csproj.GenerateResource.Cache
+c:\users\maciej\documents\visual studio 2013\Projects\PW_Karcianka\PW_Karcianka\obj\Debug\PW_Karcianka.exe
+c:\users\maciej\documents\visual studio 2013\Projects\PW_Karcianka\PW_Karcianka\obj\Debug\PW_Karcianka.pdb
+c:\users\maciej\documents\visual studio 2013\Projects\PW_Karcianka\PW_Karcianka\obj\Debug\PW_Karcianka.csprojResolveAssemblyReference.cache
+C:\Users\maciej\Documents\Visual Studio 2013\Projects\PW_Karcianka\PW_Karcianka\obj\Debug\PW_Karcianka.GameScreen.resources
