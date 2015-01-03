@@ -20,11 +20,23 @@ namespace PW_Karcianka
         {
             InitializeComponent();
             pictureBox1.Controls.Add(pictureBox5);
+            
+            //pictureBox1.Controls.Add(pictureBox4);
+            //pictureBox2.Controls.Add(pictureBox4);
+            //pictureBox3.Controls.Add(pictureBox4);
+
+
+
             pictureBox5.BackColor = Color.Transparent;
             pictureBox4.BackColor = Color.Transparent;
             pictureBox3.BackColor = Color.Transparent;
             pictureBox2.BackColor = Color.Transparent;
             pictureBox1.BackColor = Color.Transparent;
+
+            pictureBox1.Image = Image.FromFile(Program.baseDirectory + "\\Images\\background\\demonic.png");
+            pictureBox2.Image = Image.FromFile(Program.baseDirectory + "\\Images\\UI\\LeftPanel.png");
+            pictureBox3.Image = Image.FromFile(Program.baseDirectory + "\\Images\\UI\\RightPanel_2.png");
+
         }
 
 
@@ -35,12 +47,12 @@ namespace PW_Karcianka
                
                 //uncomment line belov if problem with load image
                 //label1.Text = baseDirectory;
-                pictureBox1.Image = Image.FromFile(Program.baseDirectory + "\\Images\\takietam.gif");
+                pictureBox1.Image = Image.FromFile(Program.baseDirectory + "\\Images\\background\\end2.png");
                 switchImg = true;
             }
             else
             {
-                pictureBox1.Image = Image.FromFile(Program.baseDirectory + "\\Images\\bck.jpg");
+                pictureBox1.Image = Image.FromFile(Program.baseDirectory + "\\Images\\background\\end1.png");
                 switchImg = false;
             }
 
@@ -49,26 +61,27 @@ namespace PW_Karcianka
         private void button1_Click(object sender, EventArgs e)
         {
             String[] cardNames = new String[2];
-            cardNames[0] = "karta.png";
-            cardNames[1] = "karta.png";
-            //cardNames[2] = "karta.png";
+            cardNames[0] = "karta1.png";
+            cardNames[1] = "karta1.png";
             if (switchCardsNum == true)
             {
                 cardNames[3] = "karta.png";
-                cardNames[4] = "karta.png";
-                pictureBox4.Image = cl.loadCards(cardNames);
+                pictureBox6.Image = cl.loadCards(cardNames);
                 
             }
             else
             {
-                pictureBox4.Image = cl.loadCards(cardNames);
+                pictureBox6.Image = cl.loadCards(cardNames);
                 //switchCardsNum = true;
             }
         }
 
-        private void pictureBox5_Click(object sender, EventArgs e)
+        private void GameScreen_Load(object sender, EventArgs e)
         {
 
         }
+
+
+
     }
 }
