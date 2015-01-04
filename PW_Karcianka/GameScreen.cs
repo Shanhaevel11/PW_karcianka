@@ -25,7 +25,30 @@ namespace PW_Karcianka
             //pictureBox2.Controls.Add(pictureBox4);
             //pictureBox3.Controls.Add(pictureBox4);
 
+            //picturebox 14,6 (fuuu 6) ,15,17: 14 - lewy stoi, 6 - prawy stoi, 15 - lewy atakuje, 16 - prawy atakuje 
 
+            pictureBox1.Controls.Add(pictureBox14);
+            pictureBox1.Controls.Add(pictureBox6);
+            pictureBox1.Controls.Add(pictureBox15);
+            pictureBox1.Controls.Add(pictureBox16);
+
+            pictureBox14.Controls.Add(pictureBox15);
+            pictureBox14.Controls.Add(pictureBox16);
+            pictureBox14.Controls.Add(pictureBox6);
+
+            pictureBox6.Controls.Add(pictureBox15);
+            pictureBox6.Controls.Add(pictureBox16);
+            //pictureBox6.Controls.Add(pictureBox14);
+
+            pictureBox15.Controls.Add(pictureBox16);
+
+            pictureBox14.Image = Image.FromFile(Program.baseDirectory + "\\Images\\Blanks\\stand_L_blank_4.gif");
+            pictureBox6.Image = Image.FromFile(Program.baseDirectory + "\\Images\\Blanks\\stand_R_blank_4.gif");
+
+            pictureBox14.BackColor = Color.Transparent;
+            pictureBox6.BackColor = Color.Transparent;
+            pictureBox15.BackColor = Color.Transparent;
+            pictureBox16.BackColor = Color.Transparent;
 
             pictureBox5.BackColor = Color.Transparent;
             pictureBox4.BackColor = Color.Transparent;
@@ -36,6 +59,23 @@ namespace PW_Karcianka
             pictureBox1.Image = Image.FromFile(Program.baseDirectory + "\\Images\\background\\demonic.png");
             pictureBox2.Image = Image.FromFile(Program.baseDirectory + "\\Images\\UI\\LeftPanel.png");
             pictureBox3.Image = Image.FromFile(Program.baseDirectory + "\\Images\\UI\\RightPanel_2.png");
+            pictureBox4.Image = Image.FromFile(Program.baseDirectory + "\\Images\\UI\\BottomPanel.png");
+
+            // picturebox 7 - 13: Miejsca na karty
+
+            pictureBox7.Image = Image.FromFile(Program.baseDirectory + "\\Images\\UI\\EmptyCard.png");
+            pictureBox8.Image = Image.FromFile(Program.baseDirectory + "\\Images\\UI\\EmptyCard.png");
+            pictureBox9.Image = Image.FromFile(Program.baseDirectory + "\\Images\\UI\\EmptyCard.png");
+            pictureBox10.Image = Image.FromFile(Program.baseDirectory + "\\Images\\UI\\EmptyCard.png");
+            pictureBox11.Image = Image.FromFile(Program.baseDirectory + "\\Images\\UI\\EmptyCard.png");
+            pictureBox12.Image = Image.FromFile(Program.baseDirectory + "\\Images\\UI\\EmptyCard.png");
+            pictureBox13.Image = Image.FromFile(Program.baseDirectory + "\\Images\\UI\\EmptyCard.png");
+
+            //picturebox 14,6 (fuuu 6) ,15,17: 14 - lewy stoi, 6 - prawy stoi, 15 - lewy atakuje, 16 - prawy atakuje 
+            //(zrobione tak, by ataki zawsze były NAD stojącymi. Jak nie atakuje to dany picturebox powinien być niewidoczny)
+            //Są do nich przygotowane blanki. Jak zobaczysz to będziesz wiedział które to które.
+
+
 
         }
 
@@ -66,12 +106,12 @@ namespace PW_Karcianka
             if (switchCardsNum == true)
             {
                 cardNames[3] = "karta.png";
-                pictureBox6.Image = cl.loadCards(cardNames);
+                //pictureBox6.Image = cl.loadCards(cardNames);
                 
             }
             else
             {
-                pictureBox6.Image = cl.loadCards(cardNames);
+                //pictureBox6.Image = cl.loadCards(cardNames);
                 //switchCardsNum = true;
             }
         }
