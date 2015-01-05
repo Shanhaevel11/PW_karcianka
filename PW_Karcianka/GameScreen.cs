@@ -28,16 +28,16 @@ namespace PW_Karcianka
             //picturebox 14,6 (fuuu 6) ,15,17: 14 - lewy stoi, 6 - prawy stoi, 15 - lewy atakuje, 16 - prawy atakuje 
 
             pictureBox1.Controls.Add(pictureBox14);
-            pictureBox1.Controls.Add(pictureBox6);
-            pictureBox1.Controls.Add(pictureBox15);
-            pictureBox1.Controls.Add(pictureBox16);
+            //pictureBox1.Controls.Add(pictureBox6);
+            //pictureBox1.Controls.Add(pictureBox15);
+            //pictureBox1.Controls.Add(pictureBox16);
 
-            pictureBox14.Controls.Add(pictureBox15);
-            pictureBox14.Controls.Add(pictureBox16);
+            //pictureBox14.Controls.Add(pictureBox15);
+            //pictureBox14.Controls.Add(pictureBox16);
             pictureBox14.Controls.Add(pictureBox6);
 
             pictureBox6.Controls.Add(pictureBox15);
-            pictureBox6.Controls.Add(pictureBox16);
+            //pictureBox6.Controls.Add(pictureBox16);
             //pictureBox6.Controls.Add(pictureBox14);
 
             pictureBox15.Controls.Add(pictureBox16);
