@@ -16,3 +16,4 @@ D:\studia\rok4\sem1\PW\PW_karcianka\PW_Karcianka\obj\Debug\PW_Karcianka.csproj.G
 D:\studia\rok4\sem1\PW\PW_karcianka\PW_Karcianka\obj\Debug\PW_Karcianka.exe
 D:\studia\rok4\sem1\PW\PW_karcianka\PW_Karcianka\obj\Debug\PW_Karcianka.pdb
 D:\studia\rok4\sem1\PW\PW_karcianka\PW_Karcianka\obj\Debug\PW_Karcianka.csprojResolveAssemblyReference.cache
+C:\Users\maciej\Documents\Visual Studio 2013\Projects\PW_karcianka\PW_Karcianka\obj\Debug\PW_Karcianka.StartScreen.resources

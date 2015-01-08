@@ -19,7 +19,7 @@ namespace PW_Karcianka
         {
             Application.EnableVisualStyles();
             Application.SetCompatibleTextRenderingDefault(false);
-            Application.Run(new GameScreen());
+            Application.Run(new StartScreen ());
         }
     }
 }
