@@ -8,3 +8,13 @@ c:\users\maciej\documents\visual studio 2013\Projects\PW_Karcianka\PW_Karcianka\
 C:\Users\maciej\Documents\Visual Studio 2013\Projects\PW_karcianka\PW_Karcianka\obj\Release\PW_Karcianka.StartScreen.resources
 C:\Users\maciej\Documents\Visual Studio 2013\Projects\PW_karcianka\PW_Karcianka\obj\Release\PW_Karcianka.GameScreen.resources
 C:\Users\maciej\Documents\Visual Studio 2013\Projects\PW_karcianka\PW_Karcianka\obj\Release\PW_Karcianka.csprojResolveAssemblyReference.cache
+D:\studia\rok4\sem1\PW\PW_karcianka\PW_Karcianka\bin\Release\PW_Karcianka.exe.config
+D:\studia\rok4\sem1\PW\PW_karcianka\PW_Karcianka\obj\Release\PW_Karcianka.exe
+D:\studia\rok4\sem1\PW\PW_karcianka\PW_Karcianka\obj\Release\PW_Karcianka.pdb
+D:\studia\rok4\sem1\PW\PW_karcianka\PW_Karcianka\bin\Release\PW_Karcianka.exe
+D:\studia\rok4\sem1\PW\PW_karcianka\PW_Karcianka\bin\Release\PW_Karcianka.pdb
+D:\studia\rok4\sem1\PW\PW_karcianka\PW_Karcianka\obj\Release\PW_Karcianka.csprojResolveAssemblyReference.cache
+D:\studia\rok4\sem1\PW\PW_karcianka\PW_Karcianka\obj\Release\PW_Karcianka.StartScreen.resources
+D:\studia\rok4\sem1\PW\PW_karcianka\PW_Karcianka\obj\Release\PW_Karcianka.GameScreen.resources
+D:\studia\rok4\sem1\PW\PW_karcianka\PW_Karcianka\obj\Release\PW_Karcianka.Properties.Resources.resources
+D:\studia\rok4\sem1\PW\PW_karcianka\PW_Karcianka\obj\Release\PW_Karcianka.csproj.GenerateResource.Cache
