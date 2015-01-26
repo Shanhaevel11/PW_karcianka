@@ -206,6 +206,11 @@
             this.Controls.Add(this.pictureBox1);
             this.MaximizeBox = false;
             this.Name = "GameScreen";
+<<<<<<< HEAD
+=======
+            this.Text = "Chwytliwa nazwa";
+            this.FormClosed += new System.Windows.Forms.FormClosedEventHandler(this.GameScreen_FormClosed);
+>>>>>>> coś tam
             this.Load += new System.EventHandler(this.GameScreen_Load);
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox2)).EndInit();

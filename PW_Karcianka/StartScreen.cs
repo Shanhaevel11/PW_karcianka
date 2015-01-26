@@ -29,15 +29,11 @@ namespace PW_Karcianka
 
         private void button1_Click(object sender, EventArgs e)
         {
-            //SocketPermission permission = new SocketPermission(NetworkAccess.Accept,
-            //       TransportType.Tcp, "", SocketPermission.AllPorts);
-            //IPHostEntry ipHost = Dns.GetHostEntry("");
             IPHostEntry ipHost = Dns.GetHostEntry("");
             IPAddress ipAddr = ipHost.AddressList[0];
             try
             {
                 IPAddress serverAddr = IPAddress.Parse(textBox1.Text);
-                //textBox2.Text = serverAddr.ToString();
                 senderSock = new Socket(ipAddr.AddressFamily, SocketType.Stream, ProtocolType.Tcp);
                 IPEndPoint ipEndPoint = new IPEndPoint(serverAddr, 9999);
                 byte[] bytesRec = new byte[1000];
@@ -75,20 +71,8 @@ namespace PW_Karcianka
                 {
                     MessageBox.Show("Wystąpił błąd. Spróbuj ponownie. Nawet za jakiś czas. W razie nieustającego problemu skontaktuj się z supportem.", "Błąd");
                 }
-                /*t.Interval = 1000; //In milliseconds here
-                t.AutoReset = true;
-                t.Elapsed += new ElapsedEventHandler(TimerElapsed);
-                t.Start();*/
 
         }
-
-        /*void TimerElapsed(object sender, ElapsedEventArgs e)
-        {
-            if (gameok == 1)
-            {
-                t.Stop();
-            }
-        }*/
 
         private void AcceptCallback(IAsyncResult ar)
         {
@@ -104,6 +88,14 @@ namespace PW_Karcianka
 
         private void StartScreen_FormClosing(object sender, FormClosingEventArgs e)
         {
+            if (sListener != null)
+            {
+                sListener.Close();
+            }
+            if (senderSock != null)
+            {
+                senderSock.Close();
+            }
         }
 
         private void button3_Click(object sender, EventArgs e)
