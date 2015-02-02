@@ -10,9 +10,9 @@ namespace PW_Karcianka
     class Game
     {
         public Player[] players;
-        public GameState state;
-        public Boolean finished;
+        //public Boolean finished;
         /**
+         * -1 start game
          * 0 - no changes;
          * 1 - play card;
          * 2 - end turn;
@@ -22,12 +22,12 @@ namespace PW_Karcianka
         public String turn;
 
         public Game(Player p1, Player p2){
-            finished = false;
+            //finished = false;
             players = new Player[2];
             players[0] = p1;
             players[1] = p2;
-            state = new GameState(p1, p2);
-            typeOfChange = 0;
+            //state = new GameState(p1, p2);
+            typeOfChange = -1;
         }
     }
 }

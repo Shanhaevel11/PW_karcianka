@@ -45,12 +45,64 @@ namespace PW_Karcianka
             set { level = value; }
         }
 
+        short attack;
+
+        public short Attack
+        {
+            get { return attack; }
+            set { attack = value; }
+        }
+        short defense;
+
+        public short Defense
+        {
+            get { return defense; }
+            set { defense = value; }
+        }
+
+        short poison;
+
+        public short Poison
+        {
+            get { return poison; }
+            set { poison = value; }
+        }
+
+        short heal;
+
+        public short Heal
+        {
+            get { return heal; }
+            set { heal = value; }
+        }
+
+        short mana;
+        public short Mana
+        {
+            get { return mana; }
+            set { mana = value; }
+        }
+
+        List<Effect> effectsList;
+        public List<Effect> EffectsList
+        {
+            get { return effectsList; }
+            set { effectsList = value; }
+        }
+
+
         public Player(String nickname, String characterClass)
         {
             this.nickname = nickname;
             this.characterClass = characterClass;
             this.level = 1;
             this.startHp = 15;
+            this.attack = 0;
+            this.defense = 0;
+            this.poison = 0;
+            this.heal = 0;
+            this.mana = 3;
+            effectsList = new List<Effect>();
         }
     }
 }

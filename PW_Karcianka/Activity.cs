@@ -20,10 +20,33 @@ namespace PW_Karcianka
          * 6 - remove all effects in game
          */
         short type;
+
+        public short Type
+        {
+            get { return type; }
+            set { type = value; }
+        }
         Effect effect;
+        public Effect Effect
+        {
+            get { return effect; }
+            set { effect = value; }
+        }
         //own - owner of spell, opp - opponent, all - all players
         String target;
+
+        public String Target
+        {
+            get { return target; }
+            set { target = value; }
+        }
         short power;
+
+        public short Power
+        {
+            get { return power; }
+            set { power = value; }
+        }
 
         public Activity(short type, Effect effect, String target, short power)
         {

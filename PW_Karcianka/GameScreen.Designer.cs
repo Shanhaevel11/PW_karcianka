@@ -74,6 +74,22 @@
             this.label15 = new System.Windows.Forms.Label();
             this.label16 = new System.Windows.Forms.Label();
             this.label17 = new System.Windows.Forms.Label();
+            this.OwnerAtt = new System.Windows.Forms.Label();
+            this.OwnerDef = new System.Windows.Forms.Label();
+            this.OwnerPoison = new System.Windows.Forms.Label();
+            this.OwnerHeal = new System.Windows.Forms.Label();
+            this.label18 = new System.Windows.Forms.Label();
+            this.label19 = new System.Windows.Forms.Label();
+            this.label20 = new System.Windows.Forms.Label();
+            this.label21 = new System.Windows.Forms.Label();
+            this.OppAttack = new System.Windows.Forms.Label();
+            this.OppDef = new System.Windows.Forms.Label();
+            this.OppPoison = new System.Windows.Forms.Label();
+            this.OppHeal = new System.Windows.Forms.Label();
+            this.label22 = new System.Windows.Forms.Label();
+            this.label23 = new System.Windows.Forms.Label();
+            this.ownerMana = new System.Windows.Forms.Label();
+            this.oppMana = new System.Windows.Forms.Label();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox2)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox3)).BeginInit();
@@ -161,30 +177,35 @@
             resources.ApplyResources(this.pictureBox9, "pictureBox9");
             this.pictureBox9.Name = "pictureBox9";
             this.pictureBox9.TabStop = false;
+            this.pictureBox9.Click += new System.EventHandler(this.pictureBox9_Click);
             // 
             // pictureBox10
             // 
             resources.ApplyResources(this.pictureBox10, "pictureBox10");
             this.pictureBox10.Name = "pictureBox10";
             this.pictureBox10.TabStop = false;
+            this.pictureBox10.Click += new System.EventHandler(this.pictureBox10_Click);
             // 
             // pictureBox11
             // 
             resources.ApplyResources(this.pictureBox11, "pictureBox11");
             this.pictureBox11.Name = "pictureBox11";
             this.pictureBox11.TabStop = false;
+            this.pictureBox11.Click += new System.EventHandler(this.pictureBox11_Click);
             // 
             // pictureBox12
             // 
             resources.ApplyResources(this.pictureBox12, "pictureBox12");
             this.pictureBox12.Name = "pictureBox12";
             this.pictureBox12.TabStop = false;
+            this.pictureBox12.Click += new System.EventHandler(this.pictureBox12_Click);
             // 
             // pictureBox13
             // 
             resources.ApplyResources(this.pictureBox13, "pictureBox13");
             this.pictureBox13.Name = "pictureBox13";
             this.pictureBox13.TabStop = false;
+            this.pictureBox13.Click += new System.EventHandler(this.pictureBox13_Click);
             // 
             // pictureBox6
             // 
@@ -260,49 +281,41 @@
             // 
             resources.ApplyResources(this.label5, "label5");
             this.label5.Name = "label5";
-            this.label5.Click += new System.EventHandler(this.label5_Click);
             // 
             // label6
             // 
             resources.ApplyResources(this.label6, "label6");
             this.label6.Name = "label6";
-            this.label6.Click += new System.EventHandler(this.label6_Click);
             // 
             // label7
             // 
             resources.ApplyResources(this.label7, "label7");
             this.label7.Name = "label7";
-            this.label7.Click += new System.EventHandler(this.label7_Click);
             // 
             // label8
             // 
             resources.ApplyResources(this.label8, "label8");
             this.label8.Name = "label8";
-            this.label8.Click += new System.EventHandler(this.label8_Click);
             // 
             // label10
             // 
             resources.ApplyResources(this.label10, "label10");
             this.label10.Name = "label10";
-            this.label10.Click += new System.EventHandler(this.label10_Click);
             // 
             // label11
             // 
             resources.ApplyResources(this.label11, "label11");
             this.label11.Name = "label11";
-            this.label11.Click += new System.EventHandler(this.label11_Click);
             // 
             // label12
             // 
             resources.ApplyResources(this.label12, "label12");
             this.label12.Name = "label12";
-            this.label12.Click += new System.EventHandler(this.label12_Click);
             // 
             // label13
             // 
             resources.ApplyResources(this.label13, "label13");
             this.label13.Name = "label13";
-            this.label13.Click += new System.EventHandler(this.label13_Click);
             // 
             // oppName
             // 
@@ -349,10 +362,106 @@
             resources.ApplyResources(this.label17, "label17");
             this.label17.Name = "label17";
             // 
+            // OwnerAtt
+            // 
+            resources.ApplyResources(this.OwnerAtt, "OwnerAtt");
+            this.OwnerAtt.Name = "OwnerAtt";
+            // 
+            // OwnerDef
+            // 
+            resources.ApplyResources(this.OwnerDef, "OwnerDef");
+            this.OwnerDef.Name = "OwnerDef";
+            // 
+            // OwnerPoison
+            // 
+            resources.ApplyResources(this.OwnerPoison, "OwnerPoison");
+            this.OwnerPoison.Name = "OwnerPoison";
+            // 
+            // OwnerHeal
+            // 
+            resources.ApplyResources(this.OwnerHeal, "OwnerHeal");
+            this.OwnerHeal.Name = "OwnerHeal";
+            // 
+            // label18
+            // 
+            resources.ApplyResources(this.label18, "label18");
+            this.label18.Name = "label18";
+            // 
+            // label19
+            // 
+            resources.ApplyResources(this.label19, "label19");
+            this.label19.Name = "label19";
+            // 
+            // label20
+            // 
+            resources.ApplyResources(this.label20, "label20");
+            this.label20.Name = "label20";
+            // 
+            // label21
+            // 
+            resources.ApplyResources(this.label21, "label21");
+            this.label21.Name = "label21";
+            // 
+            // OppAttack
+            // 
+            resources.ApplyResources(this.OppAttack, "OppAttack");
+            this.OppAttack.Name = "OppAttack";
+            // 
+            // OppDef
+            // 
+            resources.ApplyResources(this.OppDef, "OppDef");
+            this.OppDef.Name = "OppDef";
+            // 
+            // OppPoison
+            // 
+            resources.ApplyResources(this.OppPoison, "OppPoison");
+            this.OppPoison.Name = "OppPoison";
+            // 
+            // OppHeal
+            // 
+            resources.ApplyResources(this.OppHeal, "OppHeal");
+            this.OppHeal.Name = "OppHeal";
+            // 
+            // label22
+            // 
+            resources.ApplyResources(this.label22, "label22");
+            this.label22.Name = "label22";
+            // 
+            // label23
+            // 
+            resources.ApplyResources(this.label23, "label23");
+            this.label23.Name = "label23";
+            // 
+            // ownerMana
+            // 
+            resources.ApplyResources(this.ownerMana, "ownerMana");
+            this.ownerMana.Name = "ownerMana";
+            // 
+            // oppMana
+            // 
+            resources.ApplyResources(this.oppMana, "oppMana");
+            this.oppMana.Name = "oppMana";
+            // 
             // GameScreen
             // 
             resources.ApplyResources(this, "$this");
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
+            this.Controls.Add(this.oppMana);
+            this.Controls.Add(this.ownerMana);
+            this.Controls.Add(this.label23);
+            this.Controls.Add(this.label22);
+            this.Controls.Add(this.OppHeal);
+            this.Controls.Add(this.OppPoison);
+            this.Controls.Add(this.OppDef);
+            this.Controls.Add(this.OppAttack);
+            this.Controls.Add(this.label21);
+            this.Controls.Add(this.label20);
+            this.Controls.Add(this.label19);
+            this.Controls.Add(this.label18);
+            this.Controls.Add(this.OwnerHeal);
+            this.Controls.Add(this.OwnerPoison);
+            this.Controls.Add(this.OwnerDef);
+            this.Controls.Add(this.OwnerAtt);
             this.Controls.Add(this.label17);
             this.Controls.Add(this.label16);
             this.Controls.Add(this.label15);
@@ -470,6 +579,22 @@
         private System.Windows.Forms.Label label15;
         private System.Windows.Forms.Label label16;
         private System.Windows.Forms.Label label17;
+        private System.Windows.Forms.Label OwnerAtt;
+        private System.Windows.Forms.Label OwnerDef;
+        private System.Windows.Forms.Label OwnerPoison;
+        private System.Windows.Forms.Label OwnerHeal;
+        private System.Windows.Forms.Label label18;
+        private System.Windows.Forms.Label label19;
+        private System.Windows.Forms.Label label20;
+        private System.Windows.Forms.Label label21;
+        private System.Windows.Forms.Label OppAttack;
+        private System.Windows.Forms.Label OppDef;
+        private System.Windows.Forms.Label OppPoison;
+        private System.Windows.Forms.Label OppHeal;
+        private System.Windows.Forms.Label label22;
+        private System.Windows.Forms.Label label23;
+        private System.Windows.Forms.Label ownerMana;
+        private System.Windows.Forms.Label oppMana;
     }
 }
 

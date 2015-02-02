@@ -13,13 +13,13 @@ namespace PW_Karcianka
 {
     public partial class GameScreen : Form
     {
-        bool switchImg = false;
+        short switchImg = 0;
+        bool setAutoLabel = false;
         bool switchCardsNum = false;
-        bool enablePlayCards = false;
+        bool enablePlayCards = true;
         CardLoader cl = new CardLoader();
         List<CardBind> cbList = new List<CardBind>();
         public delegate void enableButtonCallback();
-        int pictureBoxIndex=0;
         int deckIndex = 0;
 
         private List<Card> Shuffle(List<Card> list)
@@ -120,36 +120,66 @@ namespace PW_Karcianka
 
         private void buttonImgReload_Click(object sender, EventArgs e)
         {
-            if (switchImg == false)
+            if (switchImg == 0)
             {
                
                 //uncomment line belov if problem with load image
                 //label1.Text = baseDirectory;
                 pictureBox1.Image = Image.FromFile(Program.baseDirectory + "\\Images\\background\\end2.png");
-                switchImg = true;
+                switchImg = 1;
+                return;
             }
-            else
+            if (switchImg == 1)
             {
+
+                //uncomment line belov if problem with load image
+                //label1.Text = baseDirectory;
                 pictureBox1.Image = Image.FromFile(Program.baseDirectory + "\\Images\\background\\end1.png");
-                switchImg = false;
+                switchImg = 2;
+                return;
+            }
+            if (switchImg == 2)
+            {
+                    //uncomment line belov if problem with load image
+                    //label1.Text = baseDirectory;
+                    pictureBox1.Image = Image.FromFile(Program.baseDirectory + "\\Images\\background\\demonic.png");
+                    switchImg = 0;
+                    return;
             }
 
         }
 
-        public void startGame()
+        private void setLabels()
         {
-            Communicator.Receive();
-            if (Communicator.Game.players[0].Nickname == Communicator.owner.Nickname)
+            if (Communicator.Game.players[0].Nickname.Equals(Communicator.owner.Nickname))
             {
                 ownerClass.Text = Communicator.Game.players[0].CharacterClass;
                 ownerHP.Text = Communicator.Game.players[0].StartHp.ToString();
                 ownerLevel.Text = Communicator.Game.players[0].Level.ToString();
                 ownerName.Text = Communicator.Game.players[0].Nickname;
+                OwnerAtt.Text = Communicator.Game.players[0].Attack.ToString();
+                OwnerDef.Text = Communicator.Game.players[0].Defense.ToString();
+                OwnerPoison.Text = Communicator.Game.players[0].Poison.ToString();
+                OwnerHeal.Text = Communicator.Game.players[0].Heal.ToString();
+                ownerMana.Text = Communicator.Game.players[0].Mana.ToString();
                 oppClass.Text = Communicator.Game.players[1].CharacterClass;
                 oppHp.Text = Communicator.Game.players[1].StartHp.ToString();
                 oppLevel.Text = Communicator.Game.players[1].Level.ToString();
                 oppName.Text = Communicator.Game.players[1].Nickname;
-                Communicator.opponent = Communicator.Game.players[1];
+                OppAttack.Text = Communicator.Game.players[1].Attack.ToString();
+                OppDef.Text = Communicator.Game.players[1].Defense.ToString();
+                OppPoison.Text = Communicator.Game.players[1].Poison.ToString();
+                OppHeal.Text = Communicator.Game.players[1].Heal.ToString();
+                oppMana.Text = Communicator.Game.players[1].Mana.ToString();
+                if (setAutoLabel == false)
+                {
+                    Communicator.opponent = Communicator.Game.players[1];
+                    Communicator.owner = Communicator.Game.players[0];
+                }
+                else
+                {
+                    setAutoLabel = false;
+                }
             }
             else
             {
@@ -157,12 +187,36 @@ namespace PW_Karcianka
                 ownerHP.Text = Communicator.Game.players[1].StartHp.ToString();
                 ownerLevel.Text = Communicator.Game.players[1].Level.ToString();
                 ownerName.Text = Communicator.Game.players[1].Nickname;
+                OwnerAtt.Text = Communicator.Game.players[1].Attack.ToString();
+                OwnerDef.Text = Communicator.Game.players[1].Defense.ToString();
+                OwnerPoison.Text = Communicator.Game.players[1].Poison.ToString();
+                OwnerHeal.Text = Communicator.Game.players[1].Heal.ToString();
+                ownerMana.Text = Communicator.Game.players[1].Mana.ToString();
                 oppClass.Text = Communicator.Game.players[0].CharacterClass;
                 oppHp.Text = Communicator.Game.players[0].StartHp.ToString();
                 oppLevel.Text = Communicator.Game.players[0].Level.ToString();
                 oppName.Text = Communicator.Game.players[0].Nickname;
-                Communicator.opponent = Communicator.Game.players[0];
+                OppAttack.Text = Communicator.Game.players[0].Attack.ToString();
+                OppDef.Text = Communicator.Game.players[0].Defense.ToString();
+                OppPoison.Text = Communicator.Game.players[0].Poison.ToString();
+                OppHeal.Text = Communicator.Game.players[0].Heal.ToString();
+                oppMana.Text = Communicator.Game.players[0].Mana.ToString();
+                if (setAutoLabel == false)
+                {
+                    Communicator.opponent = Communicator.Game.players[0];
+                    Communicator.owner = Communicator.Game.players[1];
+                }
+                else
+                {
+                    setAutoLabel = false;
+                }
             }
+        }
+
+        public void startGame()
+        {
+            Communicator.Receive();
+            setLabels();
             if (Communicator.Game.turn != Communicator.owner.Nickname)
             {
                 button2.Enabled = false;
@@ -206,11 +260,19 @@ namespace PW_Karcianka
 
         public void updateGame(object sender, EventArgs e)
         {
+            if(Communicator.Game.typeOfChange==2){
                 enablePlayCards = true;
                 button2.Enabled = true;
                 turnLabel.Text = "Trwa twoja tura";
                 Communicator.Game.typeOfChange = 0;
+                setLabels();
                 this.Refresh();
+            }
+            if (Communicator.Game.typeOfChange == 1)
+            {
+                setLabels();
+                //TODO: Animation code
+            }
             //Communicator.Receive();
         }
 
@@ -237,6 +299,33 @@ namespace PW_Karcianka
 
         }
 
+        private void clickOnCardBox(PictureBox pb)
+        {
+            if (enablePlayCards == false)
+            {
+                return;
+            }
+            foreach(CardBind cb in cbList){
+                if (pb == cb.Pb)
+                {
+                    if (Card.playCard(cb.C, Communicator.owner, Communicator.opponent) == true)
+                    {
+                        cbList.Remove(cb);
+                        pb.Image = Image.FromFile(Program.baseDirectory + "\\Images\\UI\\EmptyCard.png");
+                        Communicator.Game.typeOfChange = 1;
+                        Communicator.sendGame();
+                        setAutoLabel = true;
+                        setLabels();
+                        break;
+                    }
+                    else
+                    {
+                        MessageBox.Show("Nie posiadasz ilości many potrzebnej do zagrania karty. (Wymagana ilość to "+cb.C.cost+" )", "Komunikat");
+                    }
+                }
+            }
+        }
+
         private void GameScreen_FormClosed(object sender, FormClosedEventArgs e)
         {
             Application.Exit();
@@ -244,61 +333,77 @@ namespace PW_Karcianka
 
         private void pictureBox7_Click(object sender, EventArgs e)
         {
-
+            clickOnCardBox(sender as PictureBox);
         }
 
         private void pictureBox8_Click(object sender, EventArgs e)
         {
-
-        }
-
-        private void label12_Click(object sender, EventArgs e)
-        {
-
-        }
-
-        private void label6_Click(object sender, EventArgs e)
-        {
-
-        }
-
-        private void label7_Click(object sender, EventArgs e)
-        {
-
-        }
-
-        private void label8_Click(object sender, EventArgs e)
-        {
-
-        }
-
-        private void label10_Click(object sender, EventArgs e)
-        {
-
-        }
-
-        private void label11_Click(object sender, EventArgs e)
-        {
-
-        }
-
-        private void label5_Click(object sender, EventArgs e)
-        {
-
-        }
-
-        private void label13_Click(object sender, EventArgs e)
-        {
-
+            clickOnCardBox(sender as PictureBox);
         }
 
         private void button2_Click(object sender, EventArgs e)
         {
             button2.Enabled = false;
             enablePlayCards = false;
+            bool endloop = false;
             turnLabel.Text = "Trwa tura przeciwnika";
             Communicator.Game.turn = Communicator.opponent.Nickname;
+            Communicator.owner.Mana += 3;
+            Communicator.Game.typeOfChange = 2;
+            Communicator.opponent.StartHp-=Communicator.opponent.Poison;
+            Communicator.opponent.StartHp+=Communicator.opponent.Heal;
+            foreach(Effect effect in Communicator.opponent.EffectsList){
+                effect.Duration--;
+            }
+            while (endloop == false)
+            {
+                endloop = true;
+                foreach (Effect effect in Communicator.opponent.EffectsList)
+                {
+                    if (effect.Duration == 0)
+                    {
+                        endloop = false;
+                        if (effect.Power > 0)
+                        {
+                            Communicator.opponent.Heal -= effect.Power;
+                        }
+                        else
+                        {
+                            Communicator.opponent.Poison += effect.Power;
+                        }
+                        Communicator.opponent.EffectsList.Remove(effect);
+                        break;
+                    }
+                }
+            }
             Communicator.sendGame();
+            setAutoLabel = true;
+            setLabels();
+        }
+
+        private void pictureBox9_Click(object sender, EventArgs e)
+        {
+            clickOnCardBox(sender as PictureBox);
+        }
+
+        private void pictureBox10_Click(object sender, EventArgs e)
+        {
+            clickOnCardBox(sender as PictureBox);
+        }
+
+        private void pictureBox11_Click(object sender, EventArgs e)
+        {
+            clickOnCardBox(sender as PictureBox);
+        }
+
+        private void pictureBox12_Click(object sender, EventArgs e)
+        {
+            clickOnCardBox(sender as PictureBox);
+        }
+
+        private void pictureBox13_Click(object sender, EventArgs e)
+        {
+            clickOnCardBox(sender as PictureBox);
         }
 
 

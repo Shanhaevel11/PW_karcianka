@@ -71,6 +71,11 @@ namespace PW_Karcianka
 
         public static void sendGame()
         {
+            if (game.typeOfChange != -1)
+            {
+                game.players[0] = owner;
+                game.players[1] = opponent;
+            }
             MemoryStream fs = new MemoryStream();
             BinaryFormatter formatter = new BinaryFormatter();
             formatter.Serialize(fs, game);
