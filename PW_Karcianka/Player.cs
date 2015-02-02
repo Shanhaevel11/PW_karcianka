@@ -6,6 +6,7 @@ using System.Threading.Tasks;
 
 namespace PW_Karcianka
 {
+    [Serializable]
     class Player
     {
         String nickname;
@@ -55,6 +56,9 @@ namespace PW_Karcianka
         {
             this.nickname = nickname;
             this.characterClass = characterClass;
+            this.deck = Constants.Deck;
+            this.level = 1;
+            this.startHp = 15;
         }
     }
 }

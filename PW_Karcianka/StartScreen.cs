@@ -11,11 +11,14 @@ using System.Net;
 using System.Net.Sockets;
 using System.Threading;
 using System.Timers;
+using System.IO;
+using System.Runtime.Serialization.Formatters.Binary;
 
 namespace PW_Karcianka
 {
     public partial class StartScreen : Form
     {
+        Player player2;
         Socket sListener;
         Socket senderSock;
         int gameok = 0;
@@ -36,19 +39,35 @@ namespace PW_Karcianka
                 IPAddress serverAddr = IPAddress.Parse(textBox1.Text);
                 senderSock = new Socket(ipAddr.AddressFamily, SocketType.Stream, ProtocolType.Tcp);
                 IPEndPoint ipEndPoint = new IPEndPoint(serverAddr, 9999);
-                byte[] bytesRec = new byte[1000];
+                byte[] bytesRec = new byte[5000];
                 senderSock.Connect(ipEndPoint);
-                byte[] msg = Encoding.Unicode.GetBytes("start");
-                senderSock.Send(msg);
+                senderSock.Send(playerInfo());
                 int msgSize = senderSock.Receive(bytesRec);
+                BinaryFormatter formattor = new BinaryFormatter();
+                MemoryStream ms = new MemoryStream(bytesRec);
+                player2 = (Player)formattor.Deserialize(ms);
+                new Communicator(senderSock, new Game(Communicator.owner, player2));
+                Communicator.Game.turn = player2.Nickname;
             }
             catch (Exception ex)
             {
                 MessageBox.Show("Wystąpił błąd przy próbie połączenia. Upewnij się, że podałeś poprawny adres IPv6 hosta i spróbuj ponownie.","Błąd");
+                return;
             }
             MessageBox.Show("Udało ci się połączyć z serwerem, możecie rozpocząć grę klikając odpowiedni przycisk.", "Błąd");
             gameok = 1;
 
+        }
+
+        private byte[] playerInfo()
+        {
+            Player p = new Player(textBox3.Text, "rogue");
+            Communicator.owner = p;
+            MemoryStream fs = new MemoryStream();
+            BinaryFormatter formatter = new BinaryFormatter();
+            formatter.Serialize(fs, p);
+            byte[] buffer = fs.ToArray();
+            return buffer;
         }
 
         private void button2_Click(object sender, EventArgs e)
@@ -78,10 +97,14 @@ namespace PW_Karcianka
         {
             Socket listener = (Socket)ar.AsyncState;
             Socket handler = listener.EndAccept(ar);  
-            byte[] bytesRec = new byte[1000];
+            byte[] bytesRec = new byte[5000];
             int msgSize = handler.Receive(bytesRec);
-            byte[] msg = Encoding.Unicode.GetBytes("start");
-            handler.Send(msg);
+            BinaryFormatter formattor = new BinaryFormatter();
+            MemoryStream ms = new MemoryStream(bytesRec);
+            player2 = (Player)formattor.Deserialize(ms);
+            handler.Send(playerInfo());
+            new Communicator(handler, new Game(Communicator.owner, player2));
+            Communicator.Game.turn = Communicator.owner.Nickname;
             MessageBox.Show("Ktoś się z tobą połączył, możecie rozpocząć grę klikając odpowiedni przycisk.", "Komunikat");
             gameok = 1;
         }
@@ -103,12 +126,21 @@ namespace PW_Karcianka
             if (gameok == 1)
             {
                 gs.Show();
+                gs.startGame();
+                if (sListener != null)
+                {
+                }
                 this.Hide();
             }
             else
             {
                 MessageBox.Show("Możesz rozpocząć grę dopiero po nawiązaniu połączenia.", "Komunikat");
             }
+        }
+
+        private void label5_Click(object sender, EventArgs e)
+        {
+
         }
     }
 }

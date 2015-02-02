@@ -14,14 +14,38 @@ namespace PW_Karcianka
     {
         short hp;
         Card[] cardsInHand;
+
+        public Card[] CardsInHand
+        {
+            get { return cardsInHand; }
+            set { cardsInHand = value; }
+        }
         Effect[] effectsOnPlayer;
+
+        public Effect[] EffectsOnPlayer
+        {
+            get { return effectsOnPlayer; }
+            set { effectsOnPlayer = value; }
+        }
         Player player;
-        Player opponent;
+
+        public Player Player
+        {
+            get { return player; }
+            set { player = value; }
+        }
+        Player player2;
+
+        public Player Player2
+        {
+            get { return player2; }
+            set { player2 = value; }
+        }
 
         public GameState(Player p1, Player p2)
         {
             this.player = p1;
-            this.opponent = p2;
+            this.player2 = p2;
             this.hp = p1.StartHp;
         }
 

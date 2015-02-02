@@ -31,7 +31,6 @@
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(GameScreen));
             this.pictureBox1 = new System.Windows.Forms.PictureBox();
             this.buttonImgReload = new System.Windows.Forms.Button();
-            this.label1 = new System.Windows.Forms.Label();
             this.pictureBox2 = new System.Windows.Forms.PictureBox();
             this.pictureBox3 = new System.Windows.Forms.PictureBox();
             this.pictureBox4 = new System.Windows.Forms.PictureBox();
@@ -48,6 +47,29 @@
             this.pictureBox6 = new System.Windows.Forms.PictureBox();
             this.pictureBox15 = new System.Windows.Forms.PictureBox();
             this.pictureBox16 = new System.Windows.Forms.PictureBox();
+            this.label2 = new System.Windows.Forms.Label();
+            this.button2 = new System.Windows.Forms.Button();
+            this.label1 = new System.Windows.Forms.Label();
+            this.label3 = new System.Windows.Forms.Label();
+            this.label4 = new System.Windows.Forms.Label();
+            this.ownerName = new System.Windows.Forms.Label();
+            this.ownerLevel = new System.Windows.Forms.Label();
+            this.ownerClass = new System.Windows.Forms.Label();
+            this.ownerHP = new System.Windows.Forms.Label();
+            this.turnLabel = new System.Windows.Forms.Label();
+            this.label5 = new System.Windows.Forms.Label();
+            this.label6 = new System.Windows.Forms.Label();
+            this.label7 = new System.Windows.Forms.Label();
+            this.label8 = new System.Windows.Forms.Label();
+            this.label10 = new System.Windows.Forms.Label();
+            this.label11 = new System.Windows.Forms.Label();
+            this.label12 = new System.Windows.Forms.Label();
+            this.label13 = new System.Windows.Forms.Label();
+            this.oppName = new System.Windows.Forms.Label();
+            this.label14 = new System.Windows.Forms.Label();
+            this.oppLevel = new System.Windows.Forms.Label();
+            this.oppClass = new System.Windows.Forms.Label();
+            this.oppHp = new System.Windows.Forms.Label();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox2)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox3)).BeginInit();
@@ -78,11 +100,6 @@
             this.buttonImgReload.Name = "buttonImgReload";
             this.buttonImgReload.UseVisualStyleBackColor = true;
             this.buttonImgReload.Click += new System.EventHandler(this.buttonImgReload_Click);
-            // 
-            // label1
-            // 
-            resources.ApplyResources(this.label1, "label1");
-            this.label1.Name = "label1";
             // 
             // pictureBox2
             // 
@@ -126,12 +143,14 @@
             resources.ApplyResources(this.pictureBox7, "pictureBox7");
             this.pictureBox7.Name = "pictureBox7";
             this.pictureBox7.TabStop = false;
+            this.pictureBox7.Click += new System.EventHandler(this.pictureBox7_Click);
             // 
             // pictureBox8
             // 
             resources.ApplyResources(this.pictureBox8, "pictureBox8");
             this.pictureBox8.Name = "pictureBox8";
             this.pictureBox8.TabStop = false;
+            this.pictureBox8.Click += new System.EventHandler(this.pictureBox8_Click);
             // 
             // pictureBox9
             // 
@@ -181,10 +200,158 @@
             this.pictureBox16.Name = "pictureBox16";
             this.pictureBox16.TabStop = false;
             // 
+            // label2
+            // 
+            resources.ApplyResources(this.label2, "label2");
+            this.label2.Name = "label2";
+            // 
+            // button2
+            // 
+            resources.ApplyResources(this.button2, "button2");
+            this.button2.Name = "button2";
+            this.button2.UseVisualStyleBackColor = true;
+            this.button2.Click += new System.EventHandler(this.button2_Click);
+            // 
+            // label1
+            // 
+            resources.ApplyResources(this.label1, "label1");
+            this.label1.Name = "label1";
+            // 
+            // label3
+            // 
+            resources.ApplyResources(this.label3, "label3");
+            this.label3.Name = "label3";
+            // 
+            // label4
+            // 
+            resources.ApplyResources(this.label4, "label4");
+            this.label4.Name = "label4";
+            // 
+            // ownerName
+            // 
+            resources.ApplyResources(this.ownerName, "ownerName");
+            this.ownerName.Name = "ownerName";
+            // 
+            // ownerLevel
+            // 
+            resources.ApplyResources(this.ownerLevel, "ownerLevel");
+            this.ownerLevel.Name = "ownerLevel";
+            // 
+            // ownerClass
+            // 
+            resources.ApplyResources(this.ownerClass, "ownerClass");
+            this.ownerClass.Name = "ownerClass";
+            // 
+            // ownerHP
+            // 
+            resources.ApplyResources(this.ownerHP, "ownerHP");
+            this.ownerHP.Name = "ownerHP";
+            // 
+            // turnLabel
+            // 
+            resources.ApplyResources(this.turnLabel, "turnLabel");
+            this.turnLabel.Name = "turnLabel";
+            // 
+            // label5
+            // 
+            resources.ApplyResources(this.label5, "label5");
+            this.label5.Name = "label5";
+            this.label5.Click += new System.EventHandler(this.label5_Click);
+            // 
+            // label6
+            // 
+            resources.ApplyResources(this.label6, "label6");
+            this.label6.Name = "label6";
+            this.label6.Click += new System.EventHandler(this.label6_Click);
+            // 
+            // label7
+            // 
+            resources.ApplyResources(this.label7, "label7");
+            this.label7.Name = "label7";
+            this.label7.Click += new System.EventHandler(this.label7_Click);
+            // 
+            // label8
+            // 
+            resources.ApplyResources(this.label8, "label8");
+            this.label8.Name = "label8";
+            this.label8.Click += new System.EventHandler(this.label8_Click);
+            // 
+            // label10
+            // 
+            resources.ApplyResources(this.label10, "label10");
+            this.label10.Name = "label10";
+            this.label10.Click += new System.EventHandler(this.label10_Click);
+            // 
+            // label11
+            // 
+            resources.ApplyResources(this.label11, "label11");
+            this.label11.Name = "label11";
+            this.label11.Click += new System.EventHandler(this.label11_Click);
+            // 
+            // label12
+            // 
+            resources.ApplyResources(this.label12, "label12");
+            this.label12.Name = "label12";
+            this.label12.Click += new System.EventHandler(this.label12_Click);
+            // 
+            // label13
+            // 
+            resources.ApplyResources(this.label13, "label13");
+            this.label13.Name = "label13";
+            this.label13.Click += new System.EventHandler(this.label13_Click);
+            // 
+            // oppName
+            // 
+            resources.ApplyResources(this.oppName, "oppName");
+            this.oppName.Name = "oppName";
+            // 
+            // label14
+            // 
+            resources.ApplyResources(this.label14, "label14");
+            this.label14.Name = "label14";
+            // 
+            // oppLevel
+            // 
+            resources.ApplyResources(this.oppLevel, "oppLevel");
+            this.oppLevel.Name = "oppLevel";
+            // 
+            // oppClass
+            // 
+            resources.ApplyResources(this.oppClass, "oppClass");
+            this.oppClass.Name = "oppClass";
+            // 
+            // oppHp
+            // 
+            resources.ApplyResources(this.oppHp, "oppHp");
+            this.oppHp.Name = "oppHp";
+            // 
             // GameScreen
             // 
             resources.ApplyResources(this, "$this");
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
+            this.Controls.Add(this.oppHp);
+            this.Controls.Add(this.oppClass);
+            this.Controls.Add(this.oppLevel);
+            this.Controls.Add(this.label14);
+            this.Controls.Add(this.oppName);
+            this.Controls.Add(this.label5);
+            this.Controls.Add(this.label6);
+            this.Controls.Add(this.label7);
+            this.Controls.Add(this.label8);
+            this.Controls.Add(this.label10);
+            this.Controls.Add(this.label11);
+            this.Controls.Add(this.label12);
+            this.Controls.Add(this.label13);
+            this.Controls.Add(this.turnLabel);
+            this.Controls.Add(this.ownerHP);
+            this.Controls.Add(this.ownerClass);
+            this.Controls.Add(this.ownerLevel);
+            this.Controls.Add(this.ownerName);
+            this.Controls.Add(this.label4);
+            this.Controls.Add(this.label3);
+            this.Controls.Add(this.label1);
+            this.Controls.Add(this.button2);
+            this.Controls.Add(this.label2);
             this.Controls.Add(this.pictureBox16);
             this.Controls.Add(this.pictureBox15);
             this.Controls.Add(this.pictureBox6);
@@ -201,16 +368,11 @@
             this.Controls.Add(this.pictureBox4);
             this.Controls.Add(this.pictureBox3);
             this.Controls.Add(this.pictureBox2);
-            this.Controls.Add(this.label1);
             this.Controls.Add(this.buttonImgReload);
             this.Controls.Add(this.pictureBox1);
             this.MaximizeBox = false;
             this.Name = "GameScreen";
-<<<<<<< HEAD
-=======
-            this.Text = "Chwytliwa nazwa";
             this.FormClosed += new System.Windows.Forms.FormClosedEventHandler(this.GameScreen_FormClosed);
->>>>>>> coś tam
             this.Load += new System.EventHandler(this.GameScreen_Load);
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox2)).EndInit();
@@ -237,7 +399,6 @@
 
         private System.Windows.Forms.PictureBox pictureBox1;
         private System.Windows.Forms.Button buttonImgReload;
-        private System.Windows.Forms.Label label1;
         private System.Windows.Forms.PictureBox pictureBox2;
         private System.Windows.Forms.PictureBox pictureBox3;
         private System.Windows.Forms.PictureBox pictureBox4;
@@ -254,6 +415,29 @@
         private System.Windows.Forms.PictureBox pictureBox6;
         private System.Windows.Forms.PictureBox pictureBox15;
         private System.Windows.Forms.PictureBox pictureBox16;
+        private System.Windows.Forms.Label label2;
+        private System.Windows.Forms.Button button2;
+        private System.Windows.Forms.Label label1;
+        private System.Windows.Forms.Label label3;
+        private System.Windows.Forms.Label label4;
+        private System.Windows.Forms.Label ownerName;
+        private System.Windows.Forms.Label ownerLevel;
+        private System.Windows.Forms.Label ownerClass;
+        private System.Windows.Forms.Label ownerHP;
+        private System.Windows.Forms.Label turnLabel;
+        private System.Windows.Forms.Label label5;
+        private System.Windows.Forms.Label label6;
+        private System.Windows.Forms.Label label7;
+        private System.Windows.Forms.Label label8;
+        private System.Windows.Forms.Label label10;
+        private System.Windows.Forms.Label label11;
+        private System.Windows.Forms.Label label12;
+        private System.Windows.Forms.Label label13;
+        private System.Windows.Forms.Label oppName;
+        private System.Windows.Forms.Label label14;
+        private System.Windows.Forms.Label oppLevel;
+        private System.Windows.Forms.Label oppClass;
+        private System.Windows.Forms.Label oppHp;
     }
 }
 
