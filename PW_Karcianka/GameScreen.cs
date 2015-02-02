@@ -17,8 +17,10 @@ namespace PW_Karcianka
         bool setAutoLabel = false;
         bool switchCardsNum = false;
         bool enablePlayCards = true;
+        Image emptyCard = Image.FromFile(Program.baseDirectory + "\\Images\\UI\\EmptyCard.png");
         CardLoader cl = new CardLoader();
         List<CardBind> cbList = new List<CardBind>();
+        StartScreen startscreen;
         public delegate void enableButtonCallback();
         int deckIndex = 0;
 
@@ -47,8 +49,9 @@ namespace PW_Karcianka
             }
         }
 
-        public GameScreen()
+        public GameScreen(StartScreen ss)
         {
+            startscreen = ss;
             InitializeComponent();
             ownerClass.Text = "warrior";
             oppClass.Text = "warrior";
@@ -96,14 +99,13 @@ namespace PW_Karcianka
             pictureBox4.Image = Image.FromFile(Program.baseDirectory + "\\Images\\UI\\BottomPanel.png");
 
             // picturebox 7 - 13: Miejsca na karty
-
-            pictureBox7.Image = Image.FromFile(Program.baseDirectory + "\\Images\\UI\\EmptyCard.png");
-            pictureBox8.Image = Image.FromFile(Program.baseDirectory + "\\Images\\UI\\EmptyCard.png");
-            pictureBox9.Image = Image.FromFile(Program.baseDirectory + "\\Images\\UI\\EmptyCard.png");
-            pictureBox10.Image = Image.FromFile(Program.baseDirectory + "\\Images\\UI\\EmptyCard.png");
-            pictureBox11.Image = Image.FromFile(Program.baseDirectory + "\\Images\\UI\\EmptyCard.png");
-            pictureBox12.Image = Image.FromFile(Program.baseDirectory + "\\Images\\UI\\EmptyCard.png");
-            pictureBox13.Image = Image.FromFile(Program.baseDirectory + "\\Images\\UI\\EmptyCard.png");
+            pictureBox7.Image = emptyCard;
+            pictureBox8.Image = emptyCard;
+            pictureBox9.Image = emptyCard;
+            pictureBox10.Image = emptyCard;
+            pictureBox11.Image = emptyCard;
+            pictureBox12.Image = emptyCard;
+            pictureBox13.Image = emptyCard;
 
             //picturebox 14,6 (fuuu 6) ,15,17: 14 - lewy stoi, 6 - prawy stoi, 15 - lewy atakuje, 16 - prawy atakuje 
             //(zrobione tak, by ataki zawsze były NAD stojącymi. Jak nie atakuje to dany picturebox powinien być niewidoczny)
@@ -266,32 +268,27 @@ namespace PW_Karcianka
                 turnLabel.Text = "Trwa twoja tura";
                 Communicator.Game.typeOfChange = 0;
                 setLabels();
+                checkWinLose();
                 this.Refresh();
             }
             if (Communicator.Game.typeOfChange == 1)
             {
-                setLabels();
                 //TODO: Animation code
+                setLabels();
+                checkWinLose();
             }
-            //Communicator.Receive();
+            if (Communicator.Game.typeOfChange == 3)
+            {
+                MessageBox.Show("Przeciwnik opuścił grę. Gra zakończona. Pociesz się wygraną walkowerem :)", "Komunikat");
+                this.Hide();
+                startscreen.Show();
+            }
         }
 
         private void button1_Click(object sender, EventArgs e)
         {
-            String[] cardNames = new String[2];
-            cardNames[0] = "karta1.png";
-            cardNames[1] = "karta1.png";
-            if (switchCardsNum == true)
-            {
-                cardNames[3] = "karta.png";
-                //pictureBox6.Image = cl.loadCards(cardNames);
-                
-            }
-            else
-            {
-                //pictureBox6.Image = cl.loadCards(cardNames);
-                //switchCardsNum = true;
-            }
+            this.Hide();
+            startscreen.Show();
         }
 
         private void GameScreen_Load(object sender, EventArgs e)
@@ -311,11 +308,12 @@ namespace PW_Karcianka
                     if (Card.playCard(cb.C, Communicator.owner, Communicator.opponent) == true)
                     {
                         cbList.Remove(cb);
-                        pb.Image = Image.FromFile(Program.baseDirectory + "\\Images\\UI\\EmptyCard.png");
+                        pb.Image = emptyCard;
                         Communicator.Game.typeOfChange = 1;
                         Communicator.sendGame();
                         setAutoLabel = true;
                         setLabels();
+                        checkWinLose();
                         break;
                     }
                     else
@@ -328,6 +326,8 @@ namespace PW_Karcianka
 
         private void GameScreen_FormClosed(object sender, FormClosedEventArgs e)
         {
+            Communicator.Game.typeOfChange = 3;
+            Communicator.sendGame();
             Application.Exit();
         }
 
@@ -341,6 +341,65 @@ namespace PW_Karcianka
             clickOnCardBox(sender as PictureBox);
         }
 
+        private PictureBox findFreeBox()
+        {
+            if (pictureBox7.Image == emptyCard)
+            {
+                return pictureBox7;
+            }
+            if (pictureBox8.Image == emptyCard)
+            {
+                return pictureBox8;
+            }
+            if (pictureBox9.Image == emptyCard)
+            {
+                return pictureBox9;
+            }
+            if (pictureBox10.Image == emptyCard)
+            {
+                return pictureBox10;
+            }
+            if (pictureBox11.Image == emptyCard)
+            {
+                return pictureBox11;
+            }
+            if (pictureBox12.Image == emptyCard)
+            {
+                return pictureBox12;
+            }
+            if (pictureBox13.Image == emptyCard)
+            {
+                return pictureBox13;
+            }
+            return null;
+
+        }
+
+        private void checkWinLose()
+        {
+            if (Communicator.owner.StartHp < 0)
+            {
+                MessageBox.Show("Twoje życie spadło poniżej 0. Przegrałeś :(", "Smutny komunikat");
+                this.Hide();
+                startscreen.Show();
+            }
+            if (Communicator.opponent.StartHp < 0)
+            {
+                MessageBox.Show("Zjechałeś życie przeciwnika poniżej 0. Wygrałeś :(", "Fajny komunikat");
+                this.Hide();
+                startscreen.Show();
+            }
+        }
+
+        private void drawCard()
+        {
+            PictureBox pb = findFreeBox();
+            if (pb != null)
+            {
+                addCard(Constants.Deck.ElementAt(deckIndex),pb);
+            }
+        }
+
         private void button2_Click(object sender, EventArgs e)
         {
             button2.Enabled = false;
@@ -349,6 +408,10 @@ namespace PW_Karcianka
             turnLabel.Text = "Trwa tura przeciwnika";
             Communicator.Game.turn = Communicator.opponent.Nickname;
             Communicator.owner.Mana += 3;
+            if (Communicator.owner.Mana > 12)
+            {
+                Communicator.owner.Mana = 12;
+            }
             Communicator.Game.typeOfChange = 2;
             Communicator.opponent.StartHp-=Communicator.opponent.Poison;
             Communicator.opponent.StartHp+=Communicator.opponent.Heal;
@@ -379,6 +442,8 @@ namespace PW_Karcianka
             Communicator.sendGame();
             setAutoLabel = true;
             setLabels();
+            drawCard();
+            checkWinLose();
         }
 
         private void pictureBox9_Click(object sender, EventArgs e)

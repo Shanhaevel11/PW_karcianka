@@ -22,12 +22,13 @@ namespace PW_Karcianka
         Socket sListener;
         Socket senderSock;
         int gameok = 0;
+        bool hihi;
         GameScreen gs;
         System.Timers.Timer t = new System.Timers.Timer();
         public StartScreen()
         {
             InitializeComponent();
-            gs = new GameScreen();
+            gs = new GameScreen(this);
         }
 
         private void button1_Click(object sender, EventArgs e)
@@ -48,6 +49,9 @@ namespace PW_Karcianka
                 player2 = (Player)formattor.Deserialize(ms);
                 new Communicator(senderSock, new Game(Communicator.owner, player2));
                 Communicator.Game.turn = player2.Nickname;
+                hihi = true;
+                gs.startGame();
+                hihi = false;
             }
             catch (Exception ex)
             {
@@ -73,6 +77,12 @@ namespace PW_Karcianka
         private void button2_Click(object sender, EventArgs e)
         {
                 string strHostName = "";
+                if (sListener != null)
+                {
+                    sListener.Close();
+                    //sListener.Shutdown(SocketShutdown.Both);
+                   // sListener.Disconnect(true);
+                }
                 strHostName = System.Net.Dns.GetHostName();
                 IPHostEntry ipHost = Dns.GetHostEntry("");
                 IPAddress ipAddr = ipHost.AddressList[0];
@@ -95,18 +105,24 @@ namespace PW_Karcianka
 
         private void AcceptCallback(IAsyncResult ar)
         {
-            Socket listener = (Socket)ar.AsyncState;
-            Socket handler = listener.EndAccept(ar);  
-            byte[] bytesRec = new byte[25000];
-            int msgSize = handler.Receive(bytesRec);
-            BinaryFormatter formattor = new BinaryFormatter();
-            MemoryStream ms = new MemoryStream(bytesRec);
-            player2 = (Player)formattor.Deserialize(ms);
-            handler.Send(playerInfo());
-            new Communicator(handler, new Game(Communicator.owner, player2));
-            Communicator.Game.turn = Communicator.owner.Nickname;
-            MessageBox.Show("Ktoś się z tobą połączył, możecie rozpocząć grę klikając odpowiedni przycisk.", "Komunikat");
-            gameok = 1;
+            try
+            {
+                Socket listener = (Socket)ar.AsyncState;
+                Socket handler = listener.EndAccept(ar);
+                byte[] bytesRec = new byte[25000];
+                int msgSize = handler.Receive(bytesRec);
+                BinaryFormatter formattor = new BinaryFormatter();
+                MemoryStream ms = new MemoryStream(bytesRec);
+                player2 = (Player)formattor.Deserialize(ms);
+                handler.Send(playerInfo());
+                new Communicator(handler, new Game(Communicator.owner, player2));
+                Communicator.Game.turn = Communicator.owner.Nickname;
+                MessageBox.Show("Ktoś się z tobą połączył, możecie rozpocząć grę klikając odpowiedni przycisk.", "Komunikat");
+                gameok = 1;
+            }
+            catch (Exception ex)
+            {
+            }
         }
 
         private void StartScreen_FormClosing(object sender, FormClosingEventArgs e)
@@ -126,7 +142,11 @@ namespace PW_Karcianka
             if (gameok == 1)
             {
                 gs.Show();
-                gs.startGame();
+                if (hihi == false)
+                {
+                    gs.startGame();
+                }
+                gameok = 0;
                 if (sListener != null)
                 {
                 }

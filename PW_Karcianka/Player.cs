@@ -96,7 +96,7 @@ namespace PW_Karcianka
             this.nickname = nickname;
             this.characterClass = characterClass;
             this.level = 1;
-            this.startHp = 15;
+            this.startHp = 10;
             this.attack = 0;
             this.defense = 0;
             this.poison = 0;
