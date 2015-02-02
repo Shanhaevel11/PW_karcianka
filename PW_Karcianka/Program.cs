@@ -17,6 +17,7 @@ namespace PW_Karcianka
         [STAThread]
         static void Main()
         {
+            Constants.initConstants();
             Application.EnableVisualStyles();
             Application.SetCompatibleTextRenderingDefault(false);
             Application.Run(new StartScreen ());

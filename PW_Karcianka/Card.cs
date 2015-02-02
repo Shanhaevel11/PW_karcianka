@@ -7,10 +7,11 @@ using System.Threading.Tasks;
 
 namespace PW_Karcianka
 {
+    [Serializable]
     class Card
     {
-        short[] cost;
-        Image cardPicture;
-        Activity cardActivity;
+        public short cost;
+        public Image cardPicture;
+        public Activity cardActivity;
     }
 }

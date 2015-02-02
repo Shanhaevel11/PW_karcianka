@@ -46,6 +46,7 @@
   <ItemGroup>
     <Compile Include="Activity.cs" />
     <Compile Include="Card.cs" />
+    <Compile Include="CardBind.cs" />
     <Compile Include="CardLoader.cs" />
     <Compile Include="Communicator.cs" />
     <Compile Include="Constants.cs" />

@@ -17,7 +17,36 @@ namespace PW_Karcianka
         bool switchCardsNum = false;
         bool enablePlayCards = false;
         CardLoader cl = new CardLoader();
+        List<CardBind> cbList = new List<CardBind>();
         public delegate void enableButtonCallback();
+        int pictureBoxIndex=0;
+        int deckIndex = 0;
+
+        private List<Card> Shuffle(List<Card> list)
+        {
+            Random rng = new Random();
+            int n = list.Count;
+            while (n > 1)
+            {
+                n--;
+                int k = rng.Next(n + 1);
+                Card value = list[k];
+                list[k] = list[n];
+                list[n] = value;
+            }
+            return list;
+        }
+
+        private void incDeckIndex()
+        {
+            deckIndex++;
+            if (deckIndex == Constants.Deck.Count)
+            {
+                Shuffle(Constants.Deck);
+                deckIndex = 0;
+            }
+        }
+
         public GameScreen()
         {
             InitializeComponent();
@@ -30,7 +59,7 @@ namespace PW_Karcianka
             //pictureBox2.Controls.Add(pictureBox4);
             //pictureBox3.Controls.Add(pictureBox4);
 
-            //picturebox 14,6 (fuuu 6) ,15,17: 14 - lewy stoi, 6 - prawy stoi, 15 - lewy atakuje, 16 - prawy atakuje 
+            //picturebox 14,6 (fuuu 6) ,15,16: 14 - lewy stoi, 6 - prawy stoi, 15 - lewy atakuje, 16 - prawy atakuje 
 
             pictureBox1.Controls.Add(pictureBox14);
             //pictureBox1.Controls.Add(pictureBox6);
@@ -81,10 +110,10 @@ namespace PW_Karcianka
             //Są do nich przygotowane blanki. Jak zobaczysz to będziesz wiedział które to które.
             // patrz niżej :P
 
-            pictureBox14.Image = Image.FromFile(Program.baseDirectory + "\\Images\\Blanks\\stand_L_blank_4.gif");
+            pictureBox14.Image = Image.FromFile(Program.baseDirectory + "\\Images\\Blanks\\stand_L_3.gif");
             pictureBox6.Image = Image.FromFile(Program.baseDirectory + "\\Images\\Blanks\\wtf.png"); //wtf to "pusty" obrazek, bo nie wiem jak do cholery wyszyścić ten co jest :P
             pictureBox15.Image = Image.FromFile(Program.baseDirectory + "\\Images\\Blanks\\wtf.png");
-            pictureBox16.Image = Image.FromFile(Program.baseDirectory + "\\Images\\Blanks\\attack_R_blank_7.gif");
+            pictureBox16.Image = Image.FromFile(Program.baseDirectory + "\\Images\\Blanks\\attack_R_1050.gif");
 
         }
 
@@ -144,6 +173,22 @@ namespace PW_Karcianka
             {
                 turnLabel.Text = "Trwa twoja tura";
             }
+            cbList.Clear();
+            deckIndex = 0;
+            Constants.Deck = Shuffle(Constants.Deck);
+            addCard(Constants.Deck.ElementAt(deckIndex), pictureBox7);
+            addCard(Constants.Deck.ElementAt(deckIndex), pictureBox8);
+            addCard(Constants.Deck.ElementAt(deckIndex), pictureBox9);
+            addCard(Constants.Deck.ElementAt(deckIndex), pictureBox10);
+            addCard(Constants.Deck.ElementAt(deckIndex), pictureBox11);
+            addCard(Constants.Deck.ElementAt(deckIndex), pictureBox12);
+        }
+
+        private void addCard(Card c, PictureBox pb)
+        {
+            cbList.Add(new CardBind(c, pb));
+            pb.Image = c.cardPicture;
+            incDeckIndex();
         }
 
         /*private void enableButton2()

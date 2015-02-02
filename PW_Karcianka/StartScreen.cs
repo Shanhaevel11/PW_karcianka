@@ -39,7 +39,7 @@ namespace PW_Karcianka
                 IPAddress serverAddr = IPAddress.Parse(textBox1.Text);
                 senderSock = new Socket(ipAddr.AddressFamily, SocketType.Stream, ProtocolType.Tcp);
                 IPEndPoint ipEndPoint = new IPEndPoint(serverAddr, 9999);
-                byte[] bytesRec = new byte[5000];
+                byte[] bytesRec = new byte[25000];
                 senderSock.Connect(ipEndPoint);
                 senderSock.Send(playerInfo());
                 int msgSize = senderSock.Receive(bytesRec);
@@ -97,7 +97,7 @@ namespace PW_Karcianka
         {
             Socket listener = (Socket)ar.AsyncState;
             Socket handler = listener.EndAccept(ar);  
-            byte[] bytesRec = new byte[5000];
+            byte[] bytesRec = new byte[25000];
             int msgSize = handler.Receive(bytesRec);
             BinaryFormatter formattor = new BinaryFormatter();
             MemoryStream ms = new MemoryStream(bytesRec);

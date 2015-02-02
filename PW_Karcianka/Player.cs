@@ -16,13 +16,6 @@ namespace PW_Karcianka
             get { return nickname; }
             set { nickname = value; }
         }
-        Card[] deck;
-
-        internal Card[] Deck
-        {
-            get { return deck; }
-            set { deck = value; }
-        }
         String characterClass;
 
         public String CharacterClass
@@ -56,7 +49,6 @@ namespace PW_Karcianka
         {
             this.nickname = nickname;
             this.characterClass = characterClass;
-            this.deck = Constants.Deck;
             this.level = 1;
             this.startHp = 15;
         }

@@ -6,24 +6,26 @@ using System.Threading.Tasks;
 
 namespace PW_Karcianka
 {
+    [Serializable]
     class Activity
     {
         /*
+         * -1 - trut or regeneration, check effect
          * 0 - damage
          * 1 - heal
-         * 2 - mana boom
-         * 3 - remove trut
-         * 4 - remove regeneration
-         * 5 - remove mana effect
-         * 6 - remove all effects
+         * 2 - defense up
+         * 3 - defense down
+         * 4 - attack up
+         * 5 - attack down
+         * 6 - remove all effects in game
          */
         short type;
         Effect effect;
-        //If target = null, it targets all players
-        Player target;
-        short[] power;
+        //own - owner of spell, opp - opponent, all - all players
+        String target;
+        short power;
 
-        public Activity(short type, Effect effect, Player target, short[] power)
+        public Activity(short type, Effect effect, String target, short power)
         {
             this.type = type;
             this.effect = effect;
