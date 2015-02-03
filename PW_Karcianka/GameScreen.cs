@@ -286,9 +286,14 @@ namespace PW_Karcianka
             }
             if (Communicator.Game.typeOfChange == 3)
             {
-                MessageBox.Show("Przeciwnik opuścił grę. Gra zakończona. Pociesz się wygraną walkowerem :)", "Komunikat");
-                this.Hide();
-                startscreen.Show();
+                String komunikat = "Przeciwnik opuścił grę. Gra zakończona. Pociesz się wygraną walkowerem :)";
+                MessageBox.Show(komunikat, "Komunikat");
+                turnLabel.Text = komunikat;
+                enablePlayCards = false;
+                button2.Enabled = false;
+                //this.Close();
+                //this.Hide();
+                //startscreen.Show();
             }
         }
 
@@ -318,7 +323,13 @@ namespace PW_Karcianka
                         pb.Image = emptyCard;
                         Communicator.Game.typeOfChange = 1;
                         Communicator.Game.animationType = cb.C.cardActivity.Type;
+                        try { 
                         Communicator.sendGame();
+                        }
+                        catch (Exception exc)
+                        {
+                            MessageBox.Show("Błąd połączenia z drugą stroną. W przypadku dalszego występowania problemu, zamknij aplikację", "Błąd");
+                        }
                         setAutoLabel = true;
                         setLabels();
                         doAnimation(cb.C.cardActivity.Type, false);
@@ -389,8 +400,17 @@ namespace PW_Karcianka
 
         private void GameScreen_FormClosed(object sender, FormClosedEventArgs e)
         {
-            Communicator.Game.typeOfChange = 3;
-            Communicator.sendGame();
+            if (Communicator.Game.typeOfChange != 3)
+            {
+                try
+                {
+                    Communicator.Game.typeOfChange = 3;
+                    Communicator.sendGame();
+                }
+                catch (Exception exc)
+                {
+                }
+            }
             Application.Exit();
         }
 
@@ -442,15 +462,19 @@ namespace PW_Karcianka
         {
             if (Communicator.owner.StartHp < 0)
             {
-                MessageBox.Show("Twoje życie spadło poniżej 0. Przegrałeś :(", "Smutny komunikat");
-                this.Hide();
-                startscreen.Show();
+                MessageBox.Show("Twoje życie spadło poniżej 0. Przegrałeś :( Jeśli chcesz spróbować jeszcze raz, uruchom grę ponownie.", "Smutny komunikat");
+                Communicator.Game.typeOfChange = 3;
+                this.Close();
+                //this.Hide();
+                //startscreen.Show();
             }
             if (Communicator.opponent.StartHp < 0)
             {
-                MessageBox.Show("Zjechałeś życie przeciwnika poniżej 0. Wygrałeś :(", "Fajny komunikat");
-                this.Hide();
-                startscreen.Show();
+                MessageBox.Show("Zjechałeś życie przeciwnika poniżej 0. Wygrałeś :( Jeśli chcesz spróbować jeszcze raz, uruchom grę ponownie.", "Fajny komunikat");
+                Communicator.Game.typeOfChange = 3;
+                this.Close();
+                //this.Hide();
+                //startscreen.Show();
             }
         }
 
@@ -502,7 +526,13 @@ namespace PW_Karcianka
                     }
                 }
             }
-            Communicator.sendGame();
+            try
+            {
+                Communicator.sendGame();
+            }
+            catch(Exception exc){
+                MessageBox.Show("Błąd połączenia z drugą stroną. W przypadku dalszego występowania problemu, zamknij aplikację", "Błąd");
+            }
             setAutoLabel = true;
             setLabels();
             drawCard();

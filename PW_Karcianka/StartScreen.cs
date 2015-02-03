@@ -61,7 +61,7 @@ namespace PW_Karcianka
                 MessageBox.Show("Wystąpił błąd przy próbie połączenia. Upewnij się, że podałeś poprawny adres IPv6 hosta i spróbuj ponownie.","Błąd");
                 return;
             }
-            MessageBox.Show("Udało ci się połączyć z serwerem, możecie rozpocząć grę klikając odpowiedni przycisk.", "Błąd");
+            MessageBox.Show("Udało ci się połączyć z serwerem, możecie rozpocząć grę klikając odpowiedni przycisk.", "Komunikat");
             gameok = 1;
 
         }
