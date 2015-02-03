@@ -20,6 +20,7 @@ namespace PW_Karcianka
          */
         public short typeOfChange;
         public String turn;
+        public short animationType;
 
         public Game(Player p1, Player p2){
             //finished = false;

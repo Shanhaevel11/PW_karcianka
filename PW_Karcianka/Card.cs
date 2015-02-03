@@ -57,16 +57,12 @@ namespace PW_Karcianka
                         owner.EffectsList.Clear();
                         break;
                     case -1:
-                        if (c.cardActivity.Effect.Power < 0)
-                        {
-                            opponent.EffectsList.Add(c.cardActivity.Effect);
-                            opponent.Poison -= c.cardActivity.Effect.Power;
-                        }
-                        else
-                        {
                             owner.EffectsList.Add(c.cardActivity.Effect);
                             owner.Heal += c.cardActivity.Effect.Power;
-                        }
+                        break;
+                    case -2:
+                            opponent.EffectsList.Add(c.cardActivity.Effect);
+                            opponent.Poison -= c.cardActivity.Effect.Power;
                         break;
                 }
                 return true;

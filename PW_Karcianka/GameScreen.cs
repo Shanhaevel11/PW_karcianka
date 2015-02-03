@@ -17,8 +17,12 @@ namespace PW_Karcianka
         bool setAutoLabel = false;
         bool switchCardsNum = false;
         bool enablePlayCards = true;
+        public System.Timers.Timer animationTimer = new System.Timers.Timer();
         Image emptyCard = Image.FromFile(Program.baseDirectory + "\\Images\\UI\\EmptyCard.png");
-        CardLoader cl = new CardLoader();
+        Image standardR = Image.FromFile(Program.baseDirectory + "\\Images\\Blanks\\stand_R_blank_4.gif");
+        Image standardL = Image.FromFile(Program.baseDirectory + "\\Images\\Blanks\\stand_L_blank_4.gif");
+        Image wtf = Image.FromFile(Program.baseDirectory + "\\Images\\Blanks\\wtf.png");
+        CardLoader cl= new CardLoader();
         List<CardBind> cbList = new List<CardBind>();
         StartScreen startscreen;
         public delegate void enableButtonCallback();
@@ -51,8 +55,11 @@ namespace PW_Karcianka
 
         public GameScreen(StartScreen ss)
         {
+            animationTimer.Elapsed+=animationTimer_Elapsed;
+            animationTimer.Enabled = true;
             startscreen = ss;
             InitializeComponent();
+            animationTimer.Enabled = true;
             ownerClass.Text = "warrior";
             oppClass.Text = "warrior";
             Communicator.OnUpdateGame += new Communicator.GameUpdateHandler(updateGame);
@@ -112,10 +119,10 @@ namespace PW_Karcianka
             //Są do nich przygotowane blanki. Jak zobaczysz to będziesz wiedział które to które.
             // patrz niżej :P
 
-            pictureBox14.Image = Image.FromFile(Program.baseDirectory + "\\Images\\Blanks\\stand_L_3.gif");
-            pictureBox6.Image = Image.FromFile(Program.baseDirectory + "\\Images\\Blanks\\wtf.png"); //wtf to "pusty" obrazek, bo nie wiem jak do cholery wyszyścić ten co jest :P
-            pictureBox15.Image = Image.FromFile(Program.baseDirectory + "\\Images\\Blanks\\wtf.png");
-            pictureBox16.Image = Image.FromFile(Program.baseDirectory + "\\Images\\Blanks\\attack_R_1050.gif");
+            //pictureBox14.Image = Image.FromFile(Program.baseDirectory + "\\Images\\Blanks\\stand_L_4.gif");
+            //pictureBox6.Image = Image.FromFile(Program.baseDirectory + "\\Images\\Blanks\\wtf.png"); //wtf to "pusty" obrazek, bo nie wiem jak do cholery wyszyścić ten co jest :P
+            //pictureBox15.Image = Image.FromFile(Program.baseDirectory + "\\Images\\Blanks\\wtf.png");
+            //pictureBox16.Image = Image.FromFile(Program.baseDirectory + "\\Images\\Blanks\\attack_R_1050.gif");
 
         }
 
@@ -273,7 +280,7 @@ namespace PW_Karcianka
             }
             if (Communicator.Game.typeOfChange == 1)
             {
-                //TODO: Animation code
+                doAnimation(Communicator.Game.animationType, true);
                 setLabels();
                 checkWinLose();
             }
@@ -310,9 +317,11 @@ namespace PW_Karcianka
                         cbList.Remove(cb);
                         pb.Image = emptyCard;
                         Communicator.Game.typeOfChange = 1;
+                        Communicator.Game.animationType = cb.C.cardActivity.Type;
                         Communicator.sendGame();
                         setAutoLabel = true;
                         setLabels();
+                        doAnimation(cb.C.cardActivity.Type, false);
                         checkWinLose();
                         break;
                     }
@@ -320,6 +329,60 @@ namespace PW_Karcianka
                     {
                         MessageBox.Show("Nie posiadasz ilości many potrzebnej do zagrania karty. (Wymagana ilość to "+cb.C.cost+" )", "Komunikat");
                     }
+                }
+            }
+        }
+
+        private void doAnimation(short type, bool recv)
+        {
+            if (recv == false)
+            {
+                if (type == 0)
+                {
+                    animationTimer.Interval = 1050;
+                    pictureBox15.Image = Image.FromFile(Program.baseDirectory + "\\Images\\Blanks\\attack_L_1050.gif");
+                    pictureBox14.Image=wtf;
+                    animationTimer.Start();
+                    enablePlayCards = false;
+                }
+                if ((type == 1)||(type==-1))
+                {
+                    animationTimer.Interval = 700;
+                    pictureBox15.Image = Image.FromFile(Program.baseDirectory + "\\Images\\Blanks\\heal_L_700.gif");
+                    animationTimer.Start();
+                    enablePlayCards = false;
+                }
+                if (type == -2)
+                {
+                    animationTimer.Interval = 1350;
+                    pictureBox16.Image = Image.FromFile(Program.baseDirectory + "\\Images\\Blanks\\poison_R_1350.gif");
+                    animationTimer.Start();
+                    enablePlayCards = false;
+                }
+            }
+            else
+            {
+                if (type == 0)
+                {
+                    animationTimer.Interval = 1050;
+                    pictureBox16.Image = Image.FromFile(Program.baseDirectory + "\\Images\\Blanks\\attack_R_1050.gif");
+                    pictureBox6.Image = wtf;
+                    animationTimer.Start();
+                    enablePlayCards = false;
+                }
+                if ((type == 1) || (type == -1))
+                {
+                    animationTimer.Interval = 700;
+                    pictureBox16.Image = Image.FromFile(Program.baseDirectory + "\\Images\\Blanks\\heal_R_700.gif");
+                    animationTimer.Start();
+                    enablePlayCards = false;
+                }
+                if (type == -2)
+                {
+                    animationTimer.Interval = 1350;
+                    pictureBox15.Image = Image.FromFile(Program.baseDirectory + "\\Images\\Blanks\\poison_L_1350.gif");
+                    animationTimer.Start();
+                    enablePlayCards = false;
                 }
             }
         }
@@ -469,6 +532,16 @@ namespace PW_Karcianka
         private void pictureBox13_Click(object sender, EventArgs e)
         {
             clickOnCardBox(sender as PictureBox);
+        }
+
+        private void animationTimer_Elapsed(object sender, EventArgs e)
+        {
+            pictureBox14.Image = Image.FromFile(Program.baseDirectory + "\\Images\\Blanks\\stand_L_blank_4.gif");
+            pictureBox6.Image = Image.FromFile(Program.baseDirectory + "\\Images\\Blanks\\stand_R_blank_4.gif");
+            pictureBox15.Image = wtf;
+            pictureBox16.Image = wtf;
+            animationTimer.Stop();
+            enablePlayCards = true;
         }
 
 

@@ -97,7 +97,7 @@ namespace PW_Karcianka
             Card poison = new Card();
             poison.cardPicture = Image.FromFile(Program.baseDirectory + "\\Images\\Cards\\poison_p2c5.png");
             poison.cost = 5;
-            poison.cardActivity = new Activity(-1, new Effect("opp",-2,4), "opp", 2);
+            poison.cardActivity = new Activity(-2, new Effect("opp",-2,4), "opp", 2);
             Card regeneration = new Card();
             regeneration.cardPicture = Image.FromFile(Program.baseDirectory + "\\Images\\Cards\\regen_p3c7.png");
             regeneration.cost = 7;

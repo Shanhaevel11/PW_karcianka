@@ -10,7 +10,6 @@ using System.Windows.Forms;
 using System.Net;
 using System.Net.Sockets;
 using System.Threading;
-using System.Timers;
 using System.IO;
 using System.Runtime.Serialization.Formatters.Binary;
 
@@ -24,7 +23,6 @@ namespace PW_Karcianka
         int gameok = 0;
         bool hihi;
         GameScreen gs;
-        System.Timers.Timer t = new System.Timers.Timer();
         public StartScreen()
         {
             InitializeComponent();
@@ -33,6 +31,11 @@ namespace PW_Karcianka
 
         private void button1_Click(object sender, EventArgs e)
         {
+            if (gameok == 1)
+            {
+                MessageBox.Show("Już jesteś połączony, nie kombinuj.", "Komunikat");
+                return;
+            }
             IPHostEntry ipHost = Dns.GetHostEntry("");
             IPAddress ipAddr = ipHost.AddressList[0];
             try
