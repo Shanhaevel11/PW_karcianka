@@ -19,8 +19,8 @@ namespace PW_Karcianka
         bool enablePlayCards = true;
         public System.Timers.Timer animationTimer = new System.Timers.Timer();
         Image emptyCard = Image.FromFile(Program.baseDirectory + "\\Images\\UI\\EmptyCard.png");
-        Image standardR = Image.FromFile(Program.baseDirectory + "\\Images\\Blanks\\stand_R_blank_4.gif");
-        Image standardL = Image.FromFile(Program.baseDirectory + "\\Images\\Blanks\\stand_L_blank_4.gif");
+        Image standardR = Image.FromFile(Program.baseDirectory + "\\Images\\Blanks\\stand_R_3.gif");
+        Image standardL = Image.FromFile(Program.baseDirectory + "\\Images\\Blanks\\stand_L_3.gif");
         Image wtf = Image.FromFile(Program.baseDirectory + "\\Images\\Blanks\\wtf.png");
         CardLoader cl= new CardLoader();
         List<CardBind> cbList = new List<CardBind>();
@@ -86,8 +86,8 @@ namespace PW_Karcianka
 
             pictureBox15.Controls.Add(pictureBox16);
 
-            pictureBox14.Image = Image.FromFile(Program.baseDirectory + "\\Images\\Blanks\\stand_L_blank_4.gif");
-            pictureBox6.Image = Image.FromFile(Program.baseDirectory + "\\Images\\Blanks\\stand_R_blank_4.gif");
+            pictureBox14.Image = Image.FromFile(Program.baseDirectory + "\\Images\\Blanks\\stand_L_3.gif");
+            pictureBox6.Image = Image.FromFile(Program.baseDirectory + "\\Images\\Blanks\\stand_R_3.gif");
 
             pictureBox14.BackColor = Color.Transparent;
             pictureBox6.BackColor = Color.Transparent;
@@ -536,8 +536,8 @@ namespace PW_Karcianka
 
         private void animationTimer_Elapsed(object sender, EventArgs e)
         {
-            pictureBox14.Image = Image.FromFile(Program.baseDirectory + "\\Images\\Blanks\\stand_L_blank_4.gif");
-            pictureBox6.Image = Image.FromFile(Program.baseDirectory + "\\Images\\Blanks\\stand_R_blank_4.gif");
+            pictureBox14.Image = Image.FromFile(Program.baseDirectory + "\\Images\\Blanks\\stand_L_3.gif");
+            pictureBox6.Image = Image.FromFile(Program.baseDirectory + "\\Images\\Blanks\\stand_R_3.gif");
             pictureBox15.Image = wtf;
             pictureBox16.Image = wtf;
             animationTimer.Stop();
