@@ -92,7 +92,7 @@ namespace PW_Karcianka
                 try
                 {
                     IPEndPoint ipEndPoint = new IPEndPoint(ipAddr, 9999);
-                    textBox2.Text = ipAddr.ToString();
+                    textBox2.Text = ipAddr.ToString().Split('%')[0];
                     sListener = new Socket(ipAddr.AddressFamily, SocketType.Stream, ProtocolType.Tcp);
                     sListener.Bind(ipEndPoint);
                     sListener.Listen(1);
